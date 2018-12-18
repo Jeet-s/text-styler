@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Text Styler</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js"></script>
+    <script src="mainctrl.js"></script>
+    <script src="fonts.service.js"></script>
+    <script src="output_code.js"></script>
+</head>
+<body ng-controller="mainctrl">
+    <div class="header">
+        <h1>JText - Text Styler</h1>
+        <p>Developed by <span><a href="http://jagjeetsingh.me" target="_blank">Jagjeet Singh</a></span></p>
+    </div>
+    <div class="ctrl">
+        <div class="container-fluid">
+            <div class="row">
+                
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <h2>Enter Text to Style :</h2>
+                    <input ng-model="text" type="text" id="text" />
+                </div>
+
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    Color :
+                    <input type="color" ng-model="styles.color" id="color" value="#ff0000"><br>
+                    Font :
+                    <select id="font" ng-model="styles['font-family']" ng-options="f for f in fontsArray">
+                    </select><br>
+                    Font Size :
+                    <input type="number" ng-model="fontsize" min="0"  ng-change="changesize()" id="font-size">
+                </div>
+
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    Letter Spacing :
+                    <input type="number" ng-model="letterspace" ng-change="changels()" id="letter-spacing">
+                    <br>
+                    Word Spacing :
+                    <input type="number" ng-model="wordspace" ng-change="changews()" id="word-spacing"><br>
+                    <button class="bold">B</button>
+                    <button class="italic">I</button>
+                    <button class="underline">U</button>
+                    <button class="strike-through"><del>S</del></button>
+                </div>
+
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <h2>Text Shadow</h2>
+                    Intensity :
+                    <input type="number" ng-model="shadowintensity" ng-change="changeshadow()" id="shadow-intensity"><br>
+                    Color :
+                    <input type="color" ng-model="shadowcolor" ng-change="changeshadow()" id="shadow-color">
+                    
+                </div>
+
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+            <div class="main-text col-xs-12 col-sm-12 col-md-12 col-lg-8">
+                <textarea ng-style="styles" id='ta' ng-model="text">{{text}}</textarea>
+            </div>
+            <div class="code col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                <output-code styles="styles"></output-code>
+            </div>
+    </div>
+    
+</body>
+</html>
